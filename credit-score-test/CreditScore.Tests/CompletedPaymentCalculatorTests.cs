@@ -25,7 +25,6 @@ namespace CreditScore.Tests
 
             //Assert
             Assert.StrictEqual(expectedPoints, points);
-            //$"\nAge : {age}\nPoints should be equal"
         }
     }
 }
