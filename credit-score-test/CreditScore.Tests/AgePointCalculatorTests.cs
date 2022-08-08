@@ -1,17 +1,15 @@
 using CreditScore;
 
-
 namespace CreditScore.Tests
 {
-    public class CreditScore_IsTest
+    public class AgePointCalculatorTests
     {
         private readonly AgePointCalculator _calculator;
 
-        public CreditScore_IsTest()
+        public AgePointCalculatorTests()
         {
             _calculator = new AgePointCalculator();
         }
-
 
         [Theory]
         [InlineData(-100,0)]
@@ -29,7 +27,5 @@ namespace CreditScore.Tests
             Assert.StrictEqual(expectedPoints, points);
             //$"\nAge : {age}\nPoints should be equal"
         }
-
-
     }
 }
