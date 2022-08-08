@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditScore", "CreditScore\CreditScore.csproj", "{282D634C-ADD4-4740-8180-69D28E3B25E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditScore.Tests", "CreditScore.Tests\CreditScore.Tests.csproj", "{BEFBB233-0A20-4594-B268-2BDF8620DB22}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{282D634C-ADD4-4740-8180-69D28E3B25E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{282D634C-ADD4-4740-8180-69D28E3B25E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{282D634C-ADD4-4740-8180-69D28E3B25E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{282D634C-ADD4-4740-8180-69D28E3B25E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEFBB233-0A20-4594-B268-2BDF8620DB22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEFBB233-0A20-4594-B268-2BDF8620DB22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEFBB233-0A20-4594-B268-2BDF8620DB22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEFBB233-0A20-4594-B268-2BDF8620DB22}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
