@@ -10,6 +10,24 @@ namespace CreditScore.Tests
             _calculator = new AgePointCalculator();
         }
 
+        [Fact]
+        public void TestPointCalculation_AgeIs15_ExpectedPointIs0()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(15);
+            //Assert (expected, actual)
+            Assert.StrictEqual(0, points);
+        }
+
+        [Fact]
+        public void TestPointCalculation_AgeIs20_ExpectedPointIs3()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(20);
+            //Assert (expected, actual)
+            Assert.StrictEqual(3, points);
+        }
+
         [Theory(DisplayName = "TODO: The 'age point calculator' should return the correct number of points from the given age input")]
         [InlineData(-100,0)]
         [InlineData(15, 0)]

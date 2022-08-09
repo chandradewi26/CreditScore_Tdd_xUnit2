@@ -10,7 +10,25 @@ namespace CreditScore.Tests
             _calculator = new MissedPaymentCalculator();
         }
 
-        [Theory(DisplayName = "TODO: 'The missed payment point calculator' should return the correct number of points from the given missed payment count input")]
+        [Fact]
+        public void TestPointCalculation_MissedPaymentIs2_ExpectedPointIsMinus3()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(2);
+            //Assert (expected, actual)
+            Assert.StrictEqual(-3, points);
+        }
+
+        [Fact]
+        public void TestPointCalculation_MissedPaymentIs5_ExpectedPointIsMinus6()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(5);
+            //Assert (expected, actual)
+            Assert.StrictEqual(-6, points);
+        }
+
+        [Theory(DisplayName = "TODO: The 'missed payment point calculator' should return the correct number of points from the given missed payment count input")]
         [InlineData(-100, 0)]
         [InlineData(0, 0)]
         [InlineData(1, -1)]

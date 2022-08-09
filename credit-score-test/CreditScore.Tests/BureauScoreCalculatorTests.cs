@@ -10,6 +10,25 @@ namespace CreditScore.Tests
             _calculator = new BureauScoreCalculator();
         }
 
+        [Fact]
+        public void TestPointCalculation_BScoreIs200_ExpectedPointIs0()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(200);
+            //Assert (expected, actual)
+            Assert.StrictEqual(0, points);
+        }
+
+        [Fact]
+        public void TestPointCalculation_BScoreIs780_ExpectedPointIs2()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(780);
+            //Assert (expected, actual)
+            Assert.StrictEqual(2, points);
+        }
+
+
         [Theory(DisplayName = "TODO: The 'bureau score point calculator' should return the correct number of points from the given bureau score input")]
         [InlineData(-100, 0)]
         [InlineData(100, 0)]

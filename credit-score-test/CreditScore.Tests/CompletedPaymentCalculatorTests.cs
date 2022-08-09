@@ -10,7 +10,25 @@ namespace CreditScore.Tests
             _calculator = new CompletedPaymentCalculator();
         }
 
-        [Theory(DisplayName = "TODO: 'The completed payment point calculator' should return the correct number of points from the given completed payment count input")]
+        [Fact]
+        public void TestPointCalculation_CompletedPaymentIs2_ExpectedPointIs3()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(2);
+            //Assert (expected, actual)
+            Assert.StrictEqual(3, points);
+        }
+
+        [Fact]
+        public void TestPointCalculation_CompletedPaymentIs3_ExpectedPointIs4()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(3);
+            //Assert (expected, actual)
+            Assert.StrictEqual(4, points);
+        }
+
+        [Theory(DisplayName = "TODO: The 'completed payment point calculator' should return the correct number of points from the given completed payment count input")]
         [InlineData(-100, 0)]
         [InlineData(0, 0)]
         [InlineData(1, 2)]
