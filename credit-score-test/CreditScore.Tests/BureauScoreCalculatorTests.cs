@@ -10,39 +10,49 @@ namespace CreditScore.Tests
             _calculator = new BureauScoreCalculator();
         }
 
-        [Fact]
-        public void TestPointCalculation_BScoreIs200_ExpectedPointIs0()
+        [Fact(DisplayName = "The 'bureau score point calculator' should return 0 points from the given bureau score of 450")]
+        public void TestPointCalculation_BScoreIs450_ExpectedPointIs0()
         {
             //Act
-            int points = _calculator.CalculatePoint(200);
+            int points = _calculator.CalculatePoint(450);
             //Assert (expected, actual)
             Assert.StrictEqual(0, points);
         }
 
-        [Fact]
-        public void TestPointCalculation_BScoreIs780_ExpectedPointIs2()
+        [Fact(DisplayName = "The 'bureau score point calculator' should return 1 points from the given bureau score of 700")]
+        public void TestPointCalculation_BScoreIs700_ExpectedPointIs1()
         {
             //Act
-            int points = _calculator.CalculatePoint(780);
+            int points = _calculator.CalculatePoint(700);
+            //Assert (expected, actual)
+            Assert.StrictEqual(1, points);
+        }
+
+        [Fact(DisplayName = "The 'bureau score point calculator' should return 2 points from the given bureau score of 850")]
+        public void TestPointCalculation_BScoreIs850_ExpectedPointIs2()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(850);
             //Assert (expected, actual)
             Assert.StrictEqual(2, points);
         }
 
-
-        [Theory(DisplayName = "TODO: The 'bureau score point calculator' should return the correct number of points from the given bureau score input")]
-        [InlineData(-100, 0)]
-        [InlineData(100, 0)]
-        [InlineData(500, 1)]
-        [InlineData(750, 2)]
-        [InlineData(900, 3)]
-        [InlineData(1300, 0)]
-        public void TestPointCalculation(int bureauScore, int expectedPoints)
+        [Fact(DisplayName = "The 'bureau score point calculator' should return 3 points from the given bureau score of 1000")]
+        public void TestPointCalculation_BScoreIs1000_ExpectedPointIs3()
         {
             //Act
-            int points = _calculator.CalculatePoint(bureauScore);
+            int points = _calculator.CalculatePoint(1000);
+            //Assert (expected, actual)
+            Assert.StrictEqual(3, points);
+        }
 
-            //Assert
-            Assert.StrictEqual(expectedPoints, points);
+        [Fact(DisplayName = "The 'bureau score point calculator' should return 0 points from the given bureau score of 1001 (invalid score)")]
+        public void TestPointCalculation_BScoreIs1001_ExpectedPointIs0()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(1001);
+            //Assert (expected, actual)
+            Assert.StrictEqual(0, points);
         }
     }
 }

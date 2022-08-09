@@ -10,8 +10,26 @@ namespace CreditScore.Tests
             _calculator = new CompletedPaymentCalculator();
         }
 
-        [Fact]
-        public void TestPointCalculation_CompletedPaymentIs2_ExpectedPointIs3()
+        [Fact(DisplayName = "The 'completed payment point calculator' should return 0 points from the given completed payment count of 0")]
+        public void TestPointCalculation_InputIs0_ExpectedIs0()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(0);
+            //Assert (expected, actual)
+            Assert.StrictEqual(0, points);
+        }
+
+        [Fact(DisplayName = "The 'completed payment point calculator' should return 2 points from the given completed payment count of 1")]
+        public void TestPointCalculation_InputIs1_ExpectedIs2()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(1);
+            //Assert (expected, actual)
+            Assert.StrictEqual(2, points);
+        }
+
+        [Fact(DisplayName = "The 'completed payment point calculator' should return 3 points from the given completed payment count of 2")]
+        public void TestPointCalculation_InputIs2_ExpectedIs3()
         {
             //Act
             int points = _calculator.CalculatePoint(2);
@@ -19,29 +37,13 @@ namespace CreditScore.Tests
             Assert.StrictEqual(3, points);
         }
 
-        [Fact]
-        public void TestPointCalculation_CompletedPaymentIs3_ExpectedPointIs4()
+        [Fact(DisplayName = "The 'completed payment point calculator' should return 4 points from the given completed payment count of 3")]
+        public void TestPointCalculation_InputIs3_ExpectedIs4()
         {
             //Act
             int points = _calculator.CalculatePoint(3);
             //Assert (expected, actual)
             Assert.StrictEqual(4, points);
-        }
-
-        [Theory(DisplayName = "TODO: The 'completed payment point calculator' should return the correct number of points from the given completed payment count input")]
-        [InlineData(-100, 0)]
-        [InlineData(0, 0)]
-        [InlineData(1, 2)]
-        [InlineData(2, 3)]
-        [InlineData(3, 4)]
-        [InlineData(5, 4)]
-        public void TestPointCalculation(int completedPayment, int expectedPoints)
-        {
-            //Act
-            int points = _calculator.CalculatePoint(completedPayment);
-
-            //Assert
-            Assert.StrictEqual(expectedPoints, points);
         }
     }
 }

@@ -10,8 +10,8 @@ namespace CreditScore.Tests
             _calculator = new AgePointCalculator();
         }
 
-        [Fact]
-        public void TestPointCalculation_AgeIs15_ExpectedPointIs0()
+        [Fact(DisplayName = "The 'age point calculator' should return 0 points from the given age of 15")]
+        public void TestPointCalculation_InputIs15_ExpectedIs0()
         {
             //Act
             int points = _calculator.CalculatePoint(15);
@@ -19,29 +19,40 @@ namespace CreditScore.Tests
             Assert.StrictEqual(0, points);
         }
 
-        [Fact]
-        public void TestPointCalculation_AgeIs20_ExpectedPointIs3()
+        [Fact(DisplayName = "The 'age point calculator' should return 3 points from the given age of 25")]
+        public void TestPointCalculation_InputIs25_ExpectedIs3()
         {
             //Act
-            int points = _calculator.CalculatePoint(20);
+            int points = _calculator.CalculatePoint(25);
             //Assert (expected, actual)
             Assert.StrictEqual(3, points);
         }
 
-        [Theory(DisplayName = "TODO: The 'age point calculator' should return the correct number of points from the given age input")]
-        [InlineData(-100,0)]
-        [InlineData(15, 0)]
-        [InlineData(20, 3)]
-        [InlineData(26, 4)]
-        [InlineData(39, 5)]
-        [InlineData(55, 6)]
-        public void TestPointCalculation(int age, int expectedPoints)
+        [Fact(DisplayName = "The 'age point calculator' should return 4 points from the given age of 35")]
+        public void TestPointCalculation_InputIs35_ExpectedIs4()
         {
             //Act
-            int points = _calculator.CalculatePoint(age);
+            int points = _calculator.CalculatePoint(35);
+            //Assert (expected, actual)
+            Assert.StrictEqual(4, points);
+        }
 
-            //Assert
-            Assert.StrictEqual(expectedPoints, points);
+        [Fact(DisplayName = "The 'age point calculator' should return 5 points from the given age of 50")]
+        public void TestPointCalculation_InputIs50_ExpectedIs5()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(50);
+            //Assert (expected, actual)
+            Assert.StrictEqual(5, points);
+        }
+
+        [Fact(DisplayName = "The 'age point calculator' should return 6 points from the given age of 51")]
+        public void TestPointCalculation_InputIs51_ExpectedIs6()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(51);
+            //Assert (expected, actual)
+            Assert.StrictEqual(6, points);
         }
     }
 }
