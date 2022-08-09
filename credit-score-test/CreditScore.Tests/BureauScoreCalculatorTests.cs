@@ -1,24 +1,23 @@
-using CreditScore;
-
 namespace CreditScore.Tests
 {
-    public class BureauScorePointCalculatorTests
+    public class BureauScoreCalculatorTests
     {
         private readonly BureauScoreCalculator _calculator;
 
-        public BureauScorePointCalculatorTests()
+        public BureauScoreCalculatorTests()
         {
+            //Arrange
             _calculator = new BureauScoreCalculator();
         }
 
-        [Theory]
+        [Theory(DisplayName = "TODO: The 'bureau score point calculator' should return the correct number of points from the given bureau score input")]
         [InlineData(-100, 0)]
         [InlineData(100, 0)]
         [InlineData(500, 1)]
         [InlineData(750, 2)]
         [InlineData(900, 3)]
         [InlineData(1300, 0)]
-        public void CalculatePoint_GivenBureauScore_ShouldReturnCorrectPoins(int bureauScore, int expectedPoints)
+        public void TestPointCalculation(int bureauScore, int expectedPoints)
         {
             //Act
             int points = _calculator.CalculatePoint(bureauScore);
