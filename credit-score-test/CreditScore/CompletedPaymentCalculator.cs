@@ -20,6 +20,10 @@
             else if (completedPayment >= 3)
             {
                 point = 4;
+            } 
+            else 
+            {
+                point = 0;
             }
             return point;
         }
