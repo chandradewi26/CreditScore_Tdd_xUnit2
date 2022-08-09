@@ -12,7 +12,7 @@ namespace CreditScore.Tests
         }
 
         [Fact(DisplayName = "The 'AgePointCalculator' should return 0 points from the given age of negative number (-10)")]
-        public void TestPointCalculation_InputIs65_ExpectedPoints6()
+        public void TestPointCalculation_InputIsNegativeNumber_ExpectedPoints0()
         {
             //Act
             int points = _calculator.CalculatePoint(-10);
