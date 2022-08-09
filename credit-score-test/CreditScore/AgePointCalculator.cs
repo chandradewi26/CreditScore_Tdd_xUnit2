@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CreditScore
+﻿namespace CreditScore
 {
     public class AgePointCalculator
     {
