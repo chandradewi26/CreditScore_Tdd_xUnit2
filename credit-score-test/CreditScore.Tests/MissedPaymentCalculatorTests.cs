@@ -10,17 +10,8 @@ namespace CreditScore.Tests
             _calculator = new MissedPaymentCalculator();
         }
 
-        [Fact(DisplayName = "The 'MissedPaymentCalculator' should return 0 points from the given missed payment count of negative numbers")]
-        public void TestPointCalculation_MissedPaymentCountIsNegativeNumber10_ExpectedPointIs0()
-        {
-            //Act
-            int points = _calculator.CalculatePoint(-10);
-            //Assert (expected, actual)
-            Assert.StrictEqual(0, points);
-        }
-        
-        [Fact(DisplayName = "The 'MissedPaymentCalculator' should return 0 points from the given missed payment count of 0")]
-        public void TestPointCalculation_MissedPaymentCountIs0_ExpectedPointIs0()
+        [Fact(DisplayName = "When the customer has 0 missed payment count, MissedPaymentCalculator should return 0 point")]
+        public void TestPointCalculation_MissedPaymentCount0_Return0()
         {
             //Act
             int points = _calculator.CalculatePoint(0);
@@ -28,8 +19,8 @@ namespace CreditScore.Tests
             Assert.StrictEqual(0, points);
         }
 
-        [Fact(DisplayName = "The 'MissedPaymentCalculator' should return -1 points from the given missed payment count of 1")]
-        public void TestPointCalculation_MissedPaymentCountIs1_ExpectedPointIsMinus1()
+        [Fact(DisplayName = "When the customer has 1 missed payment count, MissedPaymentCalculator should return -1 point")]
+        public void TestPointCalculation_MissedPaymentCount1_ReturnMin1()
         {
             //Act
             int points = _calculator.CalculatePoint(1);
@@ -37,8 +28,8 @@ namespace CreditScore.Tests
             Assert.StrictEqual(-1, points);
         }
 
-        [Fact(DisplayName = "The 'MissedPaymentCalculator' should return -3 points from the given missed payment count of 2")]
-        public void TestPointCalculation_MissedPaymentCountIs2_ExpectedPointIsMinus3()
+        [Fact(DisplayName = "When the customer has 2 missed payment counts, MissedPaymentCalculator should return -3 points")]
+        public void TestPointCalculation_MissedPaymentCount2_ReturnMin3()
         {
             //Act
             int points = _calculator.CalculatePoint(2);
@@ -46,22 +37,23 @@ namespace CreditScore.Tests
             Assert.StrictEqual(-3, points);
         }
 
-        [Fact(DisplayName = "The 'MissedPaymentCalculator' should return -6 points from the given missed payment count of 3")]
-        public void TestPointCalculation_MissedPaymentCountIs3_ExpectedPointIsMinus6()
-        {
-            //Act
-            int points = _calculator.CalculatePoint(3);
-            //Assert (expected, actual)
-            Assert.StrictEqual(-6, points);
-        }
-
-        [Fact(DisplayName = "The 'MissedPaymentCalculator' should return -6 points from the given missed payment count of more than 3")]
-        public void TestPointCalculation_MissedPaymentCountIsMoreThan3_ExpectedPointIsMinus6()
+        [Fact(DisplayName = "When the customer has equal to or more than 3 missed payment counts, MissedPaymentCalculator should return -6 points")]
+        public void TestPointCalculation_MissedPaymentCountMoreEqualOrMoreThan3_ReturnMin6()
         {
             //Act
             int points = _calculator.CalculatePoint(5);
             //Assert (expected, actual)
             Assert.StrictEqual(-6, points);
         }
+
+        [Fact(DisplayName = "When the customer has lesser than 0 missed payment counts, MissedPaymentCalculator should not return any points")]
+        public void TestPointCalculation_MissedPaymentNegativeNumber_ShouldNotReturnPoints()
+        {
+            //Act
+            int points = _calculator.CalculatePoint(-1);
+            //Assert
+            Assert.Null(points);
+        }
+        
     }
 }
