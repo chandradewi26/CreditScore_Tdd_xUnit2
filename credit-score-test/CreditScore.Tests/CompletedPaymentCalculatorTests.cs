@@ -45,5 +45,14 @@ namespace CreditScore.Tests
             //Assert (expected, actual)
             Assert.StrictEqual(4, points);
         }
+
+        [Fact(DisplayName = "Given negative number of completed payment count, CompletedPaymentCalculator should throw exception")]
+        public void TestPointCalculation_CompletedPaymentNegativeNumber_ShouldThrowException()
+        {
+            //Act
+            Action action = () => _calculator.CalculatePoint(-2);
+            //Assert
+            ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>(action);
+        }
     }
 }
