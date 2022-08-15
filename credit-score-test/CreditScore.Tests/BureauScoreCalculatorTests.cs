@@ -37,31 +37,22 @@ namespace CreditScore.Tests
             Assert.StrictEqual(3, points);
         }
 
-        [Fact(DisplayName = "Given -10 credit bureau, BureauScoreCalculator should not return any points")]
-        public void TestPointCalculation_BScoreNegativeNumber_ShouldNotReturnPoints()
-        {
-            //Act
-            int points = _calculator.CalculatePoint(-10);
-            //Assert (expected, actual)
-            Assert.Null(points);
-        }
-
-        [Fact(DisplayName = "Given less than 450 credit bureau, BureauScoreCalculator should not return any points")]
-        public void TestPointCalculation_BScoreEqualOrLessThan450_ShouldNotReturnPoints()
-        {
-            //Act
-            int points = _calculator.CalculatePoint(50);
-            //Assert (expected, actual)
-            Assert.Null(points);
-        }
-
-        [Fact(DisplayName = "Given more than 1000 credit bureau, BureauScoreCalculator should not return any points")]
-        public void TestPointCalculation_BScoreMoreThan1000_ShouldNotReturnPoints()
+        [Fact(DisplayName = "Given more than 1000 credit bureau, BureauScoreCalculator should return highest possible point (3)")]
+        public void TestPointCalculation_BScoreMoreThan1000_Return3Point()
         {
             //Act
             int points = _calculator.CalculatePoint(1001);
             //Assert (expected, actual)
-            Assert.Null(points);
+            Assert.StrictEqual(3, points);
+        }
+
+        [Fact(DisplayName = "Given less than 450 credit bureau, BureauScoreCalculator should throw exception and the customer is not qualified")]
+        public void TestPointCalculation_BScoreEqualOrLessThan450_ShouldThrowException()
+        {
+            //Act
+            Action action = () => _calculator.CalculatePoint(50);
+            //Assert
+            ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>(action);
         }
 
     }

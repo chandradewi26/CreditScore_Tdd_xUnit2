@@ -10,8 +10,9 @@
                 return 2;
             if (bureauScore >= 851 && bureauScore <= 1000)
                 return 3;
-            //return null;
-            throw new NotImplementedException();
+            if (bureauScore >= 1000)
+                return 3;
+            throw new ArgumentOutOfRangeException("All customers must have at least 451 credit bureau to be qualified");
         }
     }
 
