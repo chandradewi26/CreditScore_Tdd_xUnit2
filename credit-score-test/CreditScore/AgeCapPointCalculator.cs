@@ -12,9 +12,7 @@
                 return 5;
             if (age >= 51)
                 return 6;
-            throw new NotImplementedException();
+            throw new ArgumentOutOfRangeException("All customers must be older than 18 years old");
         }
     }
-
-
 }

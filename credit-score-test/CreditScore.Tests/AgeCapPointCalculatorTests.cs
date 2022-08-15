@@ -48,13 +48,13 @@ namespace CreditScore.Tests
             Assert.StrictEqual(6, points);
         }
 
-        [Fact(DisplayName = "When a customer is younger than 18 years old, AgeCapPointCalculator should not return any points")]
-        public void TestPointCalculation_AgeYoungerThan18_ShouldNotReturnPoints()
+        [Fact(DisplayName = "When a customer is younger than 18 years old, AgeCapPointCalculator should throw exception")]
+        public void TestPointCalculation_AgeYoungerThan18_ShouldThrowException()
         {
             //Act
-            int points = _calculator.CalculatePoint(17);
-            //Assert (expected, actual)
-            Assert.Null(points);
+            Action action = () => _calculator.CalculatePoint(10);
+            //Assert
+            ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>(action);
         }
 
     }
