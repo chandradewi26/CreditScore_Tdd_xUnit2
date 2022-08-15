@@ -46,13 +46,13 @@ namespace CreditScore.Tests
             Assert.StrictEqual(-6, points);
         }
 
-        [Fact(DisplayName = "When the customer has lesser than 0 missed payment counts, MissedPaymentCalculator should not return any points")]
-        public void TestPointCalculation_MissedPaymentNegativeNumber_ShouldNotReturnPoints()
+        [Fact(DisplayName = "Given negative number of missed payment count, MissedPaymentCalculator should throw exception")]
+        public void TestPointCalculation_MissedPaymentNegativeNumber_ShouldThrowException()
         {
             //Act
-            int points = _calculator.CalculatePoint(-1);
+            Action action = () => _calculator.CalculatePoint(-5);
             //Assert
-            Assert.Null(points);
+            ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>(action);
         }
         
     }

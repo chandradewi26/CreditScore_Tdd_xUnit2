@@ -11,8 +11,8 @@
             if (missedPayment == 2)
                 return -3;
             if (missedPayment >= 3)
-                return -6;                
-            throw new NotImplementedException();
+                return -6;
+            throw new ArgumentOutOfRangeException("Invalid input of missed payment count");
         }
     }
 }
