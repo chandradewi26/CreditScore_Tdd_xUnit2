@@ -12,29 +12,25 @@ namespace CreditScore.Tests
         [Fact(DisplayName = "When the customer has 0 completed payment count, CompletedPaymentCalculator should return 0 point")]
         public void TestPointCalculation_CompPaymentCount0_Return0()
         {
-            var points = _calculator.CalculatePoint(0);
-            Assert.StrictEqual(0, points);
+            TestPointCalculation(0, 0);
         }
 
         [Fact(DisplayName = "When the customer has 1 completed payment count, CompletedPaymentCalculator should return 2 points")]
         public void TestPointCalculation_CompPaymentCount1_Return2()
         {
-            var points = _calculator.CalculatePoint(1);
-            Assert.StrictEqual(2, points);
+            TestPointCalculation(1, 2);
         }
 
         [Fact(DisplayName = "When the customer has 2 completed payment count, CompletedPaymentCalculator should return 3 points")]
         public void TestPointCalculation_CompPaymentCount2_Return3()
         {
-            var points = _calculator.CalculatePoint(2);
-            Assert.StrictEqual(3, points);
+            TestPointCalculation(2, 3);
         }
 
         [Fact(DisplayName = "When the customer has equal to or more than 3 completed payment count, CompletedPaymentCalculator should return 4 points")]
         public void TestPointCalculation_CompPaymentCountEqualOrMoreThan3_Return4()
         {
-            var points = _calculator.CalculatePoint(3);
-            Assert.StrictEqual(4, points);
+            TestPointCalculation(3, 4);
         }
 
         [Fact(DisplayName = "Given negative number of completed payment count, CompletedPaymentCalculator should throw exception")]
@@ -42,6 +38,12 @@ namespace CreditScore.Tests
         {
             Action action = () => _calculator.CalculatePoint(-2);
             Assert.Throws<ArgumentOutOfRangeException>(action);
+        }
+
+        public void TestPointCalculation(int inputValue, int expectedOutput)
+        {
+            var points = _calculator.CalculatePoint(inputValue);
+            Assert.StrictEqual(expectedOutput, points);
         }
     }
 }
