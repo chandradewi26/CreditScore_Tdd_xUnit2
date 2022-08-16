@@ -12,7 +12,8 @@
                 return 3;
             if (completedPayment >= 3)
                 return 4;
-            throw new ArgumentOutOfRangeException("Invalid input of completed payment count");
+
+            throw new ArgumentOutOfRangeException(nameof(completedPayment), "Invalid input of completed payment count");
         }
     }
 }
