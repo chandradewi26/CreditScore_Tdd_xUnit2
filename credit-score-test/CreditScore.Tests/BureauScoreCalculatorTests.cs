@@ -40,7 +40,7 @@ namespace CreditScore.Tests
             Assert.Throws<ArgumentOutOfRangeException>(action);
         }
 
-        public void TestPointCalculation(int inputValue, int expectedOutput)
+        private void TestPointCalculation(int inputValue, int expectedOutput)
         {
             var points = _calculator.CalculatePoint(inputValue);
             Assert.StrictEqual(expectedOutput, points);

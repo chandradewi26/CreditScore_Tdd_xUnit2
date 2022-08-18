@@ -18,7 +18,7 @@ namespace CreditScore.Tests
         [Fact(DisplayName = "Test2 : Customer, 20 years old, bureau score of 500, 1 missed payments and 3 completed payments, should return $300 credit at Zip")]
         public void TestCreditCalculator_Age20BScore500Missed1Completed3_Return300Credits()
         {
-            TestCreditCalculation(20,500,1,3,300);
+            TestCreditCalculation(20, 500, 1, 3, 300);
         }
 
         [Fact(DisplayName ="Test3 : Customer, 40 years old, bureau score of 900, 3 missed payments and 3 completed payments, should return $100 credit at Zip")]        
@@ -45,10 +45,10 @@ namespace CreditScore.Tests
             TestCreditCalculation(30, 800, 0, 1, 400);
         }
 
-        [Fact(DisplayName ="Test7 : Customer, 55 years old, bureau score of 800, 0 missed payments and 2 completed payments, should return $500 credits at Zip")]
-        public void TestCreditCalculator_Age55BScore800Missed0Completed2_Return500Credits()
+        [Fact(DisplayName ="Test7 : Customer, 55 years old, bureau score of 1100, 0 missed payments and 2 completed payments, should return $500 credits at Zip")]
+        public void TestCreditCalculator_Age55BScore1100Missed0Completed2_Return500Credits()
         {
-            TestCreditCalculation(55, 800, 0, 2, 500);
+            TestCreditCalculation(55, 1100, 0, 2, 500);
         }
 
         [Fact(DisplayName ="Test8 : Customer, 60 years old, bureau score of 900, 1 missed payments and 3 completed payments, should return $600 credits at Zip")]
@@ -87,14 +87,14 @@ namespace CreditScore.Tests
             TestCreditCalculation_ShouldThrowException(20, 500, 1, 0);
         }
 
-        public void TestCreditCalculation_ShouldThrowException(int age, int bureauScore, int missedPayment, int completedPayment)
+        private void TestCreditCalculation_ShouldThrowException(int age, int bureauScore, int missedPayment, int completedPayment)
         {
             Action action = () => _calculator.CalculateCredit(age, bureauScore, missedPayment, completedPayment);
             Assert.Throws<ArgumentOutOfRangeException>(action);
 
         }
 
-        public void TestCreditCalculation(int age, int bureauScore, int missedPayment, int completedPayment, int expectedOutput)
+        private void TestCreditCalculation(int age, int bureauScore, int missedPayment, int completedPayment, int expectedOutput)
         {
             var credits = _calculator.CalculateCredit(age, bureauScore, missedPayment, completedPayment);
             Assert.Equal(expectedOutput, credits);
