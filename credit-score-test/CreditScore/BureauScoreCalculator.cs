@@ -12,8 +12,7 @@
                 return 3;
             if (bureauScore >= 1000)
                 return 3;
-
-            throw new ArgumentOutOfRangeException(nameof(bureauScore), "All customers must have at least 451 credit bureau to be qualified");
+            return 0;
         }
     }
 }

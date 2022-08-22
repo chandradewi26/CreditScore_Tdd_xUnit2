@@ -12,8 +12,7 @@
                 return -3;
             if (missedPayment >= 3)
                 return -6;
-
-            throw new ArgumentOutOfRangeException(nameof(missedPayment), "Invalid input of missed payment count");
+            return 0;
         }
     }
 }
