@@ -45,16 +45,16 @@ namespace CreditScore.Tests
             TestCreditCalculation(30, 800, 0, 1, 400);
         }
 
-        [Fact(DisplayName ="Test7 : Customer, 55 years old, bureau score of 1100, 0 missed payments and 2 completed payments, should return $500 credits at Zip")]
-        public void TestCreditCalculator_Age55BScore1100Missed0Completed2_Return500Credits()
+        [Fact(DisplayName ="Test7 : Customer, 55 years old, bureau score of 900, 0 missed payments and 1 completed payments, should return $500 credits at Zip")]
+        public void TestCreditCalculator_Age55BScore900Missed0Completed1_Return500Credits()
         {
-            TestCreditCalculation(55, 1100, 0, 2, 500);
+            TestCreditCalculation(55, 900, 0, 1, 500);
         }
 
-        [Fact(DisplayName ="Test8 : Customer, 60 years old, bureau score of 900, 1 missed payments and 3 completed payments, should return $600 credits at Zip")]
-        public void TestCreditCalculator_Age60BScore900Missed1Completed3_Return600Credits()
+        [Fact(DisplayName ="Test8 : Customer, 60 years old, bureau score of 1200, 1 missed payments and 3 completed payments, should return $600 credits at Zip")]
+        public void TestCreditCalculator_Age60BScore1200Missed1Completed3_Return600Credits()
         {
-            TestCreditCalculation(60, 900, 1, 3, 600);
+            TestCreditCalculation(60, 1200, 1, 3, 600);
         }
 
         [Fact(DisplayName ="Test9 : Customer, 20 years old, bureau score of 900, 1 missed payments and 2 completed payments, should return $300 credits at Zip")]
@@ -63,35 +63,28 @@ namespace CreditScore.Tests
             TestCreditCalculation(20, 900, 1, 2, 300);
         }
 
-        [Fact(DisplayName ="Test10 : Customer, 30 years old, bureau score of 500, 5 missed payments and 1 completed payments, should throw exception")]
-        public void TestCreditCalculator_Age30BScore500Missed5Completed1_ShouldThrowException()
+        [Fact(DisplayName ="Test10 : Customer, 30 years old, bureau score of 500, 5 missed payments and 1 completed payments, should return $0 credits, customer is not qualified")]
+        public void TestCreditCalculator_Age30BScore500Missed5Completed1_Return0Credit()
         {
-            TestCreditCalculation_ShouldThrowException(30, 500, 5, 1);
+            TestCreditCalculation(30, 500, 5, 1, 0);
         }
 
-        [Fact(DisplayName ="Test11 : Customer, 15 years old, bureau score of 200, 0 missed payments and 0 completed payments, should throw exception")]
-        public void TestCreditCalculator_Age15BScore200Missed0Completed0_ShouldThrowException()
+        [Fact(DisplayName = "Test11 : Customer, 15 years old, bureau score of 950, 0 missed payments and 2 completed payments, should return $0 credits, customer is not qualified")]
+        public void TestCreditCalculator_Age15BScore950Missed0Completed2_Return0Credit()
         {
-            TestCreditCalculation_ShouldThrowException(15, 200, 0, 0);
+            TestCreditCalculation(15, 950, 0, 2, 0);
         }
 
-        [Fact(DisplayName ="Test12 : Customer, 30 years old, bureau score of 100, 0 missed payment and 3 completed payments, should throw exception")]
-        public void TestCreditCalculator_Age30BScore100Missed0Completed3_ShouldThrowException()
+        [Fact(DisplayName = "Test12 : Customer, 30 years old, bureau score of 100, 0 missed payment and 3 completed payments, should return $0 credits, customer is not qualified")]
+        public void TestCreditCalculator_Age30BScore100Missed0Completed3_Return0Credit()
         {
-            TestCreditCalculation_ShouldThrowException(30, 100, 0, 3);
+            TestCreditCalculation(30, 100, 0, 3, 0);
         }
 
-        [Fact(DisplayName = "Test13 : Customer, 20 years old, bureau score of 500, 1 missed payments and 0 completed payments, should throw exception")]
-        public void TestCreditCalculator_Age20BScore500Missed1Completed0_ShouldThrowException()
+        [Fact(DisplayName = "Test13 : Customer, 20 years old, bureau score of 500, 1 missed payments and 0 completed payments, should return $0 credits, customer is not qualified")]
+        public void TestCreditCalculator_Age20BScore500Missed1Completed0_Return0Credit()
         {
-            TestCreditCalculation_ShouldThrowException(20, 500, 1, 0);
-        }
-
-        private void TestCreditCalculation_ShouldThrowException(int age, int bureauScore, int missedPayment, int completedPayment)
-        {
-            Action action = () => _calculator.CalculateCredit(age, bureauScore, missedPayment, completedPayment);
-            Assert.Throws<ArgumentOutOfRangeException>(action);
-
+            TestCreditCalculation(20, 500, 1, 0, 0);
         }
 
         private void TestCreditCalculation(int age, int bureauScore, int missedPayment, int completedPayment, int expectedOutput)

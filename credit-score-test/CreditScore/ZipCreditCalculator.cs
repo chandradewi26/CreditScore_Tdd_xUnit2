@@ -23,7 +23,12 @@
 
             if (points <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(points), "Customer with 0 points or below is not qualified");
+                return 0;
+            }
+
+            if (_bureauScoreCalculator.CalculatePoint(bureauScore) <= 0)
+            {
+                return 0;
             }
 
             return Convert.ToDecimal(points * 100);
