@@ -1,6 +1,8 @@
-﻿namespace CreditScore
+﻿using CreditScore.Interfaces;
+
+namespace CreditScore
 {
-    public class BureauScoreCalculator
+    public class BureauScoreCalculator : ICalculatorPointModel
     {
         public int CalculatePoint(int bureauScore)
         {

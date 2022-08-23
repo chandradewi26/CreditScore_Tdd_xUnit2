@@ -1,6 +1,8 @@
-﻿namespace CreditScore
+﻿using CreditScore.Interfaces;
+
+namespace CreditScore
 {
-    public class MissedPaymentCalculator
+    public class MissedPaymentCalculator : ICalculatorPointModel
     {
         public int CalculatePoint(int missedPayment)
         {

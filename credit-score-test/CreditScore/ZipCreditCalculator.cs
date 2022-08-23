@@ -1,6 +1,6 @@
 ﻿namespace CreditScore
 {
-    public class ZipCreditCalculator
+    public class ZipCreditCalculator : Interfaces.ICalculatorCreditModel
     {
         private readonly BureauScoreCalculator _bureauScoreCalculator = new BureauScoreCalculator();
         private readonly MissedPaymentCalculator _missedPaymentCalculator = new MissedPaymentCalculator();
