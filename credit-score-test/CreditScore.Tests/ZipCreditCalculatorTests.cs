@@ -2,7 +2,10 @@ namespace CreditScore.Tests
 {
     public class ZipCreditCalculatorTests
     {
+        //var userInterface = new UserInterface(biz);
         private readonly ZipCreditCalculator _calculator;
+
+        //IBusiness biz = new BusinessV2(dal);
         private readonly IAgeCapPointCalculator _ageCapCalculator = new AgeCapPointCalculator();
         private readonly IBureauScoreCalculator _bureauScoreCalculator = new BureauScoreCalculator();
         private readonly IMissedPaymentCalculator _missedPaymentCalculator = new MissedPaymentCalculator();
@@ -10,6 +13,7 @@ namespace CreditScore.Tests
 
         public ZipCreditCalculatorTests()
         {
+            //var userInterface = new UserInterface(biz);
             _calculator = new ZipCreditCalculator(_ageCapCalculator, _bureauScoreCalculator, _missedPaymentCalculator, _completedPaymentCalculator);
         }
         
