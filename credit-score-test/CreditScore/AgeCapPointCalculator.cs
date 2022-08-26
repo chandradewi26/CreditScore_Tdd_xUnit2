@@ -1,8 +1,10 @@
-﻿using CreditScore.Interfaces;
-
-namespace CreditScore
+﻿namespace CreditScore
 {
-    public class AgeCapPointCalculator : ICalculatorPointModel
+    public interface IAgeCapPointCalculator
+    {
+        int CalculatePoint(int age);
+    }
+    public class AgeCapPointCalculator : IAgeCapPointCalculator
     {
         public int CalculatePoint(int age)
         {
