@@ -1,20 +1,31 @@
+using Microsoft.Extensions.DependencyInjection;
+
 namespace CreditScore.Tests
 {
     public class ZipCreditCalculatorTests
     {
-        //var userInterface = new UserInterface(biz);
         private readonly ZipCreditCalculator _calculator;
-
-        //IBusiness biz = new BusinessV2(dal);
-        private readonly IAgeCapPointCalculator _ageCapCalculator = new AgeCapPointCalculator();
-        private readonly IBureauScoreCalculator _bureauScoreCalculator = new BureauScoreCalculator();
-        private readonly IMissedPaymentCalculator _missedPaymentCalculator = new MissedPaymentCalculator();
-        private readonly ICompletedPaymentCalculator _completedPaymentCalculator = new CompletedPaymentCalculator();
 
         public ZipCreditCalculatorTests()
         {
-            //var userInterface = new UserInterface(biz);
-            _calculator = new ZipCreditCalculator(_ageCapCalculator, _bureauScoreCalculator, _missedPaymentCalculator, _completedPaymentCalculator);
+            //1. We need a service collection
+            var collection = new ServiceCollection();
+            collection.AddScoped<IAgeCapPointCalculator, AgeCapPointCalculator>();
+            collection.AddScoped<IBureauScoreCalculator, BureauScoreCalculator>();
+            collection.AddScoped<IMissedPaymentCalculator, MissedPaymentCalculator>();
+            collection.AddScoped<ICompletedPaymentCalculator, CompletedPaymentCalculator>();
+
+            //2.Instance of service provider
+            var provider = collection.BuildServiceProvider();
+
+            //3.IBusiness biz = provider.GetService<IBusiness>();
+            IAgeCapPointCalculator ageCapPointCalculator = provider.GetService<IAgeCapPointCalculator>();
+            IBureauScoreCalculator bureauScoreCalculator = provider.GetService<IBureauScoreCalculator>();
+            IMissedPaymentCalculator missedPaymentCalculator = provider.GetService<IMissedPaymentCalculator>();
+            ICompletedPaymentCalculator completedPaymentCalculator = provider.GetService<ICompletedPaymentCalculator>();
+
+            //4. var userInterface = new UserInterface(biz);
+            _calculator = new ZipCreditCalculator(ageCapPointCalculator, bureauScoreCalculator, missedPaymentCalculator, completedPaymentCalculator);
         }
         
         [Fact(DisplayName = "Test1 : Customer, 29 years old, bureau score of 750, 1 missed payments and 4 completed payments, should return $400 credit at Zip")]
