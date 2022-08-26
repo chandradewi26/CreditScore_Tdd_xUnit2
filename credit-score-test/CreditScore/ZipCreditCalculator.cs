@@ -1,13 +1,25 @@
 ﻿namespace CreditScore
 {
-    public class ZipCreditCalculator : Interfaces.ICalculatorCreditModel
-    {
-        private readonly BureauScoreCalculator _bureauScoreCalculator = new BureauScoreCalculator();
-        private readonly MissedPaymentCalculator _missedPaymentCalculator = new MissedPaymentCalculator();
-        private readonly CompletedPaymentCalculator _completedPaymentCalculator = new CompletedPaymentCalculator();
-        private readonly AgeCapPointCalculator _ageCalculator = new AgeCapPointCalculator();
+    public class ZipCreditCalculator
+    { 
+        private readonly IAgeCapPointCalculator _ageCalculator;
+        private readonly IBureauScoreCalculator _bureauScoreCalculator;
+        private readonly IMissedPaymentCalculator _missedPaymentCalculator;
+        private readonly ICompletedPaymentCalculator _completedPaymentCalculator;
 
-        public Decimal CalculateCredit(int age, int bureauScore, int missedPayment, int completedPayment)
+        public ZipCreditCalculator(
+            IAgeCapPointCalculator ageCalculator,
+            IBureauScoreCalculator bureauCalculator,
+            IMissedPaymentCalculator missedCalculator,
+            ICompletedPaymentCalculator completedCalculator)
+        {
+            _ageCalculator = ageCalculator;
+            _bureauScoreCalculator = bureauCalculator;
+            _missedPaymentCalculator = missedCalculator;
+            _completedPaymentCalculator = completedCalculator;
+        }
+
+        public decimal CalculateCredit(int age, int bureauScore, int missedPayment, int completedPayment)
         {
             var capPoints = _ageCalculator.CalculatePoint(age);
 

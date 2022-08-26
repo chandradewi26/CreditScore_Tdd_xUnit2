@@ -3,10 +3,14 @@ namespace CreditScore.Tests
     public class ZipCreditCalculatorTests
     {
         private readonly ZipCreditCalculator _calculator;
+        private readonly IAgeCapPointCalculator _ageCapCalculator = new AgeCapPointCalculator();
+        private readonly IBureauScoreCalculator _bureauScoreCalculator = new BureauScoreCalculator();
+        private readonly IMissedPaymentCalculator _missedPaymentCalculator = new MissedPaymentCalculator();
+        private readonly ICompletedPaymentCalculator _completedPaymentCalculator = new CompletedPaymentCalculator();
 
         public ZipCreditCalculatorTests()
         {
-            _calculator = new ZipCreditCalculator();
+            _calculator = new ZipCreditCalculator(_ageCapCalculator, _bureauScoreCalculator, _missedPaymentCalculator, _completedPaymentCalculator);
         }
         
         [Fact(DisplayName = "Test1 : Customer, 29 years old, bureau score of 750, 1 missed payments and 4 completed payments, should return $400 credit at Zip")]
