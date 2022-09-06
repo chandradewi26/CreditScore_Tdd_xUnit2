@@ -1,8 +1,8 @@
 ﻿namespace CreditScore
 {
-    public class AgeCapPointCalculator : IPointCalculator
+    public class AgeCapPointCalculator : IPointsCalculator
     {
-        public int CalculatePoint(Customer customer)
+        public int CalculatePoints(Customer customer)
         {
             var age = customer.Age;
 

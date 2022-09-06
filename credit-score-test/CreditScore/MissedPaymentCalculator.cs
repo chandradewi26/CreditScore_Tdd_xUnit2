@@ -1,8 +1,8 @@
 ﻿namespace CreditScore
 {
-    public class MissedPaymentCalculator : IPointCalculator
+    public class MissedPaymentCalculator : IPointsCalculator
     {
-        public int CalculatePoint(Customer customer)
+        public int CalculatePoints(Customer customer)
         {
             var missedPayment = customer.MissedPaymentCount;
 

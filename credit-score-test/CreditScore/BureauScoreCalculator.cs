@@ -1,8 +1,8 @@
 ﻿namespace CreditScore
 {
-    public class BureauScoreCalculator : IPointCalculator
+    public class BureauScoreCalculator : IPointsCalculator
     {
-        public int CalculatePoint(Customer customer)
+        public int CalculatePoints(Customer customer)
         {
             var bureauScore = customer.BureauScore;
 

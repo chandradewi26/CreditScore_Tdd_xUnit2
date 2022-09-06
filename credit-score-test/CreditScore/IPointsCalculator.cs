@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CreditScore
 {
-    public interface IPointCalculator
+    public interface IPointsCalculator
     {
-        int CalculatePoint(Customer customer);
+        int CalculatePoints(Customer customer);
     }
 }
