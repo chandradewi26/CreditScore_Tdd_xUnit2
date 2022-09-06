@@ -5,18 +5,15 @@ namespace CreditScore
     {
         static void Main(string[] args)
         {
-            IPointCalculator ageCapPointCalculator = new AgeCapPointCalculator();
-            IPointCalculator bureauScoreCalculator = new BureauScoreCalculator();
-            IPointCalculator missedPaymentCalculator = new MissedPaymentCalculator();
-            IPointCalculator completedPaymentCalculator = new CompletedPaymentCalculator();
-
-            var _calculator = new ZipCreditCalculator(ageCapPointCalculator, bureauScoreCalculator, missedPaymentCalculator, completedPaymentCalculator);
+            var _calculator = new ZipCreditCalculator();
 
             //Manual testing
             Console.WriteLine("Hello World");
-            Customer customer1 = new Customer(29,750,1,4);
-            Customer customer2 = new Customer(30, 500, 5, 1);
-            Console.WriteLine(_calculator.CalculateCredit(customer1));
+            Customer customer1 = new Customer(750,1,4,29);
+            //Expected to print 400
+            Customer customer2 = new Customer(500,1,3,20);
+            //Expected to print 500
+            Console.WriteLine("Customer1's _calculator.CalculateCredit(customer1));
             Console.WriteLine(_calculator.CalculateCredit(customer2));
         }
     }

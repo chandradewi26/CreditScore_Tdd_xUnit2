@@ -8,11 +8,7 @@ namespace CreditScore.Tests
 
         public ZipCreditCalculatorTests()
         {
-            var ageCapPointCalculator = new AgeCapPointCalculator();
-            var bureauScoreCalculator = new BureauScoreCalculator();
-            var missedPaymentCalculator = new MissedPaymentCalculator();
-            var completedPaymentCalculator = new CompletedPaymentCalculator();
-            _calculator = new ZipCreditCalculator(ageCapPointCalculator, bureauScoreCalculator, missedPaymentCalculator, completedPaymentCalculator);
+            _calculator = new ZipCreditCalculator();
         }
 
         private void TestCreditCalculation(int bureauScore, int missedPayment, int completedPayment, int age, int expectedOutput)
