@@ -5,6 +5,7 @@
         public int CalculatePoint(Customer customer)
         {
             var bureauScore = customer.BureauScore;
+
             if (bureauScore >= 451 && bureauScore <= 700)
                 return 1;
             if (bureauScore >= 701 && bureauScore <= 850)

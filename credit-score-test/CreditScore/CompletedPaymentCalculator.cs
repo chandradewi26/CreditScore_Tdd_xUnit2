@@ -5,6 +5,7 @@
         public int CalculatePoint(Customer customer)
         {
             var completedPayment = customer.CompletedPaymentCount;
+
             if (completedPayment == 0)
                 return 0;
             if (completedPayment == 1)
