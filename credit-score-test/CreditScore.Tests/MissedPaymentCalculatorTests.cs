@@ -1,15 +1,13 @@
 namespace CreditScore.Tests
 {
-    public class MissedPaymentCalculatorTests
+    public class MissedPaymentCalculatorTests : PointCalculatorTestsFixture
     {
-        private readonly MissedPaymentCalculator _calculator;
-
-        public MissedPaymentCalculatorTests()
+        protected override IPointCalculator CreateCalculator()
         {
-            _calculator = new MissedPaymentCalculator();
+            return new MissedPaymentCalculator();
         }
 
-        private Customer CreateDummyCustomer(int inputValue)
+        protected override Customer CreateTestCustomer(int inputValue)
         {
             return new Customer(0, inputValue, 0, 0);
         }
@@ -23,17 +21,13 @@ namespace CreditScore.Tests
         [InlineData(4, -6)]
         public void TestPointCalculation_GivenMissedPaymentCount_ReturnCorrectPoint(int inputValue, int expectedOutput)
         {
-            var customer = CreateDummyCustomer(inputValue);
-            var points = _calculator.CalculatePoint(customer);
-            Assert.StrictEqual(expectedOutput, points);
+            TestPointCalculation(inputValue, expectedOutput);
         }
 
         [Fact(DisplayName = "Given negative number of missed payment count, MissedPaymentCalculator should return 0 point")]
         public void TestPointCalculation_MissedPaymentLessThan0_ShouldReturn0()
         {
-            var ineligibleCustomer = CreateDummyCustomer(-10);
-            var points = _calculator.CalculatePoint(ineligibleCustomer);
-            Assert.StrictEqual(0, points);
+            TestPointCalculation(-5, 0);
         }
     }
 }

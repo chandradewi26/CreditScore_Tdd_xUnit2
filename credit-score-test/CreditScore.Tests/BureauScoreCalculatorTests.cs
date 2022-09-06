@@ -1,15 +1,13 @@
 namespace CreditScore.Tests
 {
-    public class BureauScoreCalculatorTests
+    public class BureauScoreCalculatorTests : PointCalculatorTestsFixture
     {
-        private readonly BureauScoreCalculator _calculator;
-
-        public BureauScoreCalculatorTests()
+        protected override IPointCalculator CreateCalculator()
         {
-            _calculator = new BureauScoreCalculator();
+            return new BureauScoreCalculator();
         }
 
-        private Customer CreateDummyCustomer(int inputValue)
+        protected override Customer CreateTestCustomer(int inputValue)
         {
             return new Customer(inputValue, 0, 0, 0);
         }
@@ -26,17 +24,13 @@ namespace CreditScore.Tests
         [InlineData(1200, 3)]
         public void TestPointCalculation_GivenCreditBureau_ReturnCorrectPoint(int inputValue, int expectedOutput)
         {
-            var customer = CreateDummyCustomer(inputValue);
-            var points = _calculator.CalculatePoint(customer);
-            Assert.StrictEqual(expectedOutput, points);
-        }
 
+            TestPointCalculation(inputValue, expectedOutput);
+        }
         [Fact(DisplayName = "Given less than 450 credit bureau, BureauScoreCalculator should return 0 point")]
         public void TestPointCalculation_BScoreLessThan0_ShouldReturn0()
         {
-            var ineligibleCustomer = CreateDummyCustomer(-50);
-            var points = _calculator.CalculatePoint(ineligibleCustomer);
-            Assert.StrictEqual(0, points);
+            TestPointCalculation(-50, 0);
         }
     }
 }
