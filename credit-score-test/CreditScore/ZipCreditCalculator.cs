@@ -2,16 +2,16 @@
 {
     public class ZipCreditCalculator
     { 
-        private readonly IAgeCapPointCalculator _ageCalculator;
-        private readonly IBureauScoreCalculator _bureauScoreCalculator;
-        private readonly IMissedPaymentCalculator _missedPaymentCalculator;
-        private readonly ICompletedPaymentCalculator _completedPaymentCalculator;
+        private readonly IPointCalculator _ageCalculator;
+        private readonly IPointCalculator _bureauScoreCalculator;
+        private readonly IPointCalculator _missedPaymentCalculator;
+        private readonly IPointCalculator _completedPaymentCalculator;
 
         public ZipCreditCalculator(
-            IAgeCapPointCalculator ageCalculator,
-            IBureauScoreCalculator bureauCalculator,
-            IMissedPaymentCalculator missedCalculator,
-            ICompletedPaymentCalculator completedCalculator)
+            IPointCalculator ageCalculator,
+            IPointCalculator bureauCalculator,
+            IPointCalculator missedCalculator,
+            IPointCalculator completedCalculator)
         {
             _ageCalculator = ageCalculator;
             _bureauScoreCalculator = bureauCalculator;
@@ -19,14 +19,15 @@
             _completedPaymentCalculator = completedCalculator;
         }
 
-        public decimal CalculateCredit(int age, int bureauScore, int missedPayment, int completedPayment)
+        public decimal CalculateCredit(Customer customer)
         {
-            var capPoints = _ageCalculator.CalculatePoint(age);
+
+            var capPoints = _ageCalculator.CalculatePoint(customer);
 
             var points = 0;
-            points += _bureauScoreCalculator.CalculatePoint(bureauScore);
-            points += _missedPaymentCalculator.CalculatePoint(missedPayment);
-            points += _completedPaymentCalculator.CalculatePoint(completedPayment);
+            points += _bureauScoreCalculator.CalculatePoint(customer);
+            points += _missedPaymentCalculator.CalculatePoint(customer);
+            points += _completedPaymentCalculator.CalculatePoint(customer);
             
             if (points > capPoints)
             {
@@ -38,7 +39,7 @@
                 return 0;
             }
 
-            if (_bureauScoreCalculator.CalculatePoint(bureauScore) <= 0)
+            if (_bureauScoreCalculator.CalculatePoint(customer) <= 0)
             {
                 return 0;
             }
