@@ -9,6 +9,11 @@ namespace CreditScore.Tests
             _calculator = new CompletedPaymentCalculator();
         }
 
+        private Customer CreateDummyCustomer(int inputValue)
+        {
+            return new Customer(0, 0, inputValue, 0);
+        }
+
         [Theory(DisplayName = "Given customer's completed payment count, CompletedPaymentCalculator should calculate the correct point")]
         [InlineData(-10, 0)]
         [InlineData(0, 0)]
@@ -18,14 +23,16 @@ namespace CreditScore.Tests
         [InlineData(4, 4)]
         public void TestPointCalculation_GivenCompletedPaymentCount_ReturnCorrectPoint(int inputValue, int expectedOutput)
         {
-            var points = _calculator.CalculatePoint(inputValue);
+            var customer = CreateDummyCustomer(inputValue);
+            var points = _calculator.CalculatePoint(customer);
             Assert.StrictEqual(expectedOutput, points);
         }
 
         [Fact(DisplayName = "Given negative number of completed payment count, CompletedPaymentCalculator should return 0 point")]
         public void TestPointCalculation_CompletedPaymentNegativeNumber_ShouldReturn0()
         {
-            var points = _calculator.CalculatePoint(-2);
+            var ineligibleCustomer = CreateDummyCustomer(-2);
+            var points = _calculator.CalculatePoint(ineligibleCustomer);
             Assert.StrictEqual(0, points);
         }
     }
