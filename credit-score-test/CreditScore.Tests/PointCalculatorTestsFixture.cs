@@ -9,7 +9,7 @@ namespace CreditScore.Tests
     //This is an abstract class in C#
     public abstract class PointCalculatorTestsFixture
     {
-        private IPointsCalculator _calculator;
+        private IPointsCalculator? _calculator;
 
         //protected so that children class can use ?? why not private?
         protected abstract IPointsCalculator CreateCalculator();
@@ -20,8 +20,21 @@ namespace CreditScore.Tests
         {
             _calculator = CreateCalculator();
             var customer = CreateTestCustomer(input);
+            var result = _calculator.CalculatePoints(customer);
+            //Check if result is type of PointScore
+            Assert.IsType<PointScore>(result);
+            // idk what is this line about?
+            var pointScore = result as PointScore;
+            //retrieve the point
+            Assert.Equal(expectedOutput, pointScore.Points);
+        }
+
+        public void TestPointCalculation_ShouldReturnNotEligible(int input)
+        {
+            _calculator = CreateCalculator();
+            var customer = CreateTestCustomer(input);
             var points = _calculator.CalculatePoints(customer);
-            Assert.StrictEqual(expectedOutput, points);
+            Assert.IsType<NotEligible>(points);
         }
     }
 }

@@ -14,7 +14,6 @@ namespace CreditScore.Tests
         }
 
         [Theory(DisplayName = "Given customer's age, AgeCapPointCalculator should calculate the correct cap point ")]
-        [InlineData(10, 0)]
         [InlineData(18, 3)]
         [InlineData(25, 3)]
         [InlineData(26, 4)]
@@ -28,10 +27,10 @@ namespace CreditScore.Tests
             TestPointCalculation(inputValue, expectedOutput);
         }
 
-        [Fact(DisplayName = "When a customer is younger than 18 years old, AgeCapPointCalculator should return 0 cap point")]
-        public void TestPointCalculation_AgeYoungerThan18_ShouldReturn0()
+        [Fact(DisplayName = "The AgeCapPointCalculator should not allow customer younger than 18 years old")]
+        public void TestPointCalculation_AgeYoungerThan18_ShouldReturnNotEligible()
         {
-            TestPointCalculation(10, 0);
+            TestPointCalculation_ShouldReturnNotEligible(10);
         }
     }
 }
