@@ -2,19 +2,19 @@
 {
     public class AgeCapPointCalculator : IPointsCalculator
     {
-        public int CalculatePoints(Customer customer)
+        public IPointsCalculationResult CalculatePoints(Customer customer)
         {
             var age = customer.Age;
 
             if (age >= 18 && age <= 25)
-                return 3;
+                return new PointScore(3);
             if (age >= 26 && age <= 35)
-                return 4;
+                return new PointScore(4);
             if (age >= 36 && age <= 50)
-                return 5;
+                return new PointScore(5);
             if (age >= 51)
-                return 6;
-            return 0;
+                return new PointScore(6);
+            return new NotEligible();
         }
     }
 }

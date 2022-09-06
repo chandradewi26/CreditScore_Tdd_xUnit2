@@ -8,6 +8,6 @@ namespace CreditScore
 {
     public interface IPointsCalculator
     {
-        int CalculatePoints(Customer customer);
+        IPointsCalculationResult CalculatePoints(Customer customer);
     }
 }
