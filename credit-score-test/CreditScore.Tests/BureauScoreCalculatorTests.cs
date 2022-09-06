@@ -2,7 +2,7 @@ namespace CreditScore.Tests
 {
     public class BureauScoreCalculatorTests : PointCalculatorTestsFixture
     {
-        protected override IPointCalculator CreateCalculator()
+        protected override IPointsCalculator CreateCalculator()
         {
             return new BureauScoreCalculator();
         }
