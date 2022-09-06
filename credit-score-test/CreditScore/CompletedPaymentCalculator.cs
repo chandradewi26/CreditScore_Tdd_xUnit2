@@ -1,13 +1,10 @@
 ﻿namespace CreditScore
 {
-    public interface ICompletedPaymentCalculator
+    public class CompletedPaymentCalculator : IPointCalculator
     {
-        int CalculatePoint(int completedPayment);
-    }
-    public class CompletedPaymentCalculator : ICompletedPaymentCalculator
-    {
-        public int CalculatePoint(int completedPayment)
+        public int CalculatePoint(Customer customer)
         {
+            var completedPayment = customer.CompletedPaymentCount;
             if (completedPayment == 0)
                 return 0;
             if (completedPayment == 1)

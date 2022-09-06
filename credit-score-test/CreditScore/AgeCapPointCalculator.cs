@@ -1,13 +1,11 @@
 ﻿namespace CreditScore
 {
-    public interface IAgeCapPointCalculator
+    public class AgeCapPointCalculator : IPointCalculator
     {
-        int CalculatePoint(int age);
-    }
-    public class AgeCapPointCalculator : IAgeCapPointCalculator
-    {
-        public int CalculatePoint(int age)
+        public int CalculatePoint(Customer customer)
         {
+            var age = customer.Age;
+
             if (age >= 18 && age <= 25)
                 return 3;
             if (age >= 26 && age <= 35)

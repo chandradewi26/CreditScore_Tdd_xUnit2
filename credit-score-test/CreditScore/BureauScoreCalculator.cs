@@ -1,13 +1,10 @@
 ﻿namespace CreditScore
 {
-    public interface IBureauScoreCalculator
+    public class BureauScoreCalculator : IPointCalculator
     {
-        int CalculatePoint(int bureauScore);
-    }
-    public class BureauScoreCalculator : IBureauScoreCalculator
-    {
-        public int CalculatePoint(int bureauScore)
+        public int CalculatePoint(Customer customer)
         {
+            var bureauScore = customer.BureauScore;
             if (bureauScore >= 451 && bureauScore <= 700)
                 return 1;
             if (bureauScore >= 701 && bureauScore <= 850)

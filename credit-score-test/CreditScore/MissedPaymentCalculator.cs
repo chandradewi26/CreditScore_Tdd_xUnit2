@@ -1,13 +1,11 @@
 ﻿namespace CreditScore
 {
-    public interface IMissedPaymentCalculator
+    public class MissedPaymentCalculator : IPointCalculator
     {
-        int CalculatePoint(int missedPayment);
-    }
-    public class MissedPaymentCalculator : IMissedPaymentCalculator
-    {
-        public int CalculatePoint(int missedPayment)
+        public int CalculatePoint(Customer customer)
         {
+            var missedPayment = customer.MissedPaymentCount;
+
             if (missedPayment == 0)
                 return 0;
             if (missedPayment == 1)
