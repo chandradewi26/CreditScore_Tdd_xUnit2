@@ -8,5 +8,7 @@ namespace CreditScore
 {
     public interface IPointsCalculationResult
     {
+        //This part needs to have Points, if not, the AgeCapPoint.Points @ ZipCreditCalculator class does not work.
+        public int Points { get; }
     }
 }

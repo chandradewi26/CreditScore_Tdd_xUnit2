@@ -8,5 +8,6 @@ namespace CreditScore
 {
     public sealed class NotEligible : IPointsCalculationResult
     {
+        public int Points => throw new NotImplementedException();
     }
 }

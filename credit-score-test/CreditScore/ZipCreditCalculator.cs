@@ -7,7 +7,7 @@ namespace CreditScore
         public decimal CalculateCredit(Customer customer)
         {
             //method GetCalculatedPoints<Type of Calculator> where <Type of Calculator> is Interface IPointsCalculator, new () ??
-            int GetCalculatedPoints<TCalculator>()
+            IPointsCalculationResult GetCalculatedPoints<TCalculator>()
                 where TCalculator : IPointsCalculator, new()
             {
                 //return result of CalculatePoints<Type of Calculator>(customer);
@@ -19,31 +19,48 @@ namespace CreditScore
             var completedPaymentPoints = GetCalculatedPoints<CompletedPaymentCalculator>();
             var ageCapPoints = GetCalculatedPoints<AgeCapPointCalculator>();
 
-            var points = bureauScorePoints + missedPaymentPoints + completedPaymentPoints;
-
-            //If user has BureauScorePoint 0 or lesser, they're automatically ineligible.
-            if (bureauScorePoints <= 0)
+            if (bureauScorePoints is NotEligible)
             {
                 return 0;
             }
 
-            //If user has accumulative points of lesser than 0
-            if (points <= 0)
+            if (ageCapPoints is NotEligible)
             {
                 return 0;
             }
 
-            //If user has points more than age cap
-            if (points > ageCapPoints)
-            {
-                return ageCapPoints * 100;
-            }
+            //Assign them into new array
+            var points = new[] { bureauScorePoints, missedPaymentPoints, completedPaymentPoints};
 
-            return points * 100;
+            //What is cast?
+            var subTotal = points.Where(p => p is PointScore).Cast<PointScore>().Sum(p => p.Points);
+
+
+            var totalPoints = subTotal >= ageCapPoints.Points ? ageCapPoints.Points : subTotal;
+
+            switch (totalPoints)
+            {
+                case <= 0:
+                    return 0;
+                case 1:
+                    return 100;
+                case 2:
+                    return 200;
+                case 3:
+                    return 300;
+                case 4:
+                    return 400;
+                case 5:
+                    return 500;
+                case 6:
+                    return 600;
+                default:
+                    return 0;
+            };
         }
 
         //This method is called, first it created a new Calculator using the provided Calculator type, calculate point, and return ints
-        private int CalculatePoints<TCalculator>(Customer customer) 
+        private IPointsCalculationResult CalculatePoints<TCalculator>(Customer customer) 
             where TCalculator : IPointsCalculator, new()
         {
             var calculator = new TCalculator();

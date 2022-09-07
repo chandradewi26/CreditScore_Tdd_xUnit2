@@ -13,8 +13,8 @@ namespace CreditScore
             //Expected to print 400
             Customer customer2 = new Customer(500,1,3,20);
             //Expected to print 500
-            Console.WriteLine("Customer1's _calculator.CalculateCredit(customer1));
-            Console.WriteLine(_calculator.CalculateCredit(customer2));
+            Console.WriteLine("Customer1's credit" + _calculator.CalculateCredit(customer1));
+            Console.WriteLine("Customer2's credit" + _calculator.CalculateCredit(customer2));
         }
     }
 }

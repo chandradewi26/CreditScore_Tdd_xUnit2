@@ -8,11 +8,11 @@ namespace CreditScore
 {
     public class Customer
     {
-        //Preferably not having set; to avoid further change of content.
-        public int BureauScore { get; set; }
-        public int MissedPaymentCount { get; set; }
-        public int CompletedPaymentCount { get; set; }
-        public int Age { get; set; }
+        //Preferably not having set; to avoid changes of raw data.
+        public int BureauScore { get; }
+        public int MissedPaymentCount { get; }
+        public int CompletedPaymentCount { get; }
+        public int Age { get; }
 
         public Customer(int bureauScore, int missedPaymentCount,
             int completedPaymentCount, int ageInYears)
