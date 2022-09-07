@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace CreditScore.Tests
 {
-    //This is an abstract class in C#
+    //This is an abstract class in C# for every calculator
     public abstract class PointCalculatorTestsFixture
     {
         private IPointsCalculator? _calculator;
 
-        //protected so that children class can use ?? why not private?
         protected abstract IPointsCalculator CreateCalculator();
 
         protected abstract Customer CreateTestCustomer(int inputValue);

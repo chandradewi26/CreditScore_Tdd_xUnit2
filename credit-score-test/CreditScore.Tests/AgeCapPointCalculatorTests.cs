@@ -2,7 +2,6 @@ namespace CreditScore.Tests
 {
     public class AgeCapPointCalculatorTests : PointCalculatorTestsFixture
     {
-        //why protected? why not private?
         protected override IPointsCalculator CreateCalculator()
         {
             return new AgeCapPointCalculator();
